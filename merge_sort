@@ -1,0 +1,48 @@
+// You can edit this code!
+// Click here and start typing.
+package main
+
+import "fmt"
+
+func main() {
+	unSortedArr := []int{10, 9, 5, 4, 6, 7, 1, 8, 2, 3}
+	//unSortedArr := []int{10, 9, 8, 7, 6, 5, 4, 3, 2, 1}
+	sortedArr := mergeSort(unSortedArr)
+	fmt.Println(sortedArr)
+}
+
+func mergeSort(items []int) []int {
+	l := len(items)
+
+	if l == 1 {
+		return items
+	}
+	firstHalvs := mergeSort(items[:l/2])
+	secondHalvs := mergeSort(items[l/2:])
+	return merge(firstHalvs, secondHalvs)
+}
+
+func merge(f []int, s []int) []int {
+	i := 0
+	j := 0
+	var final []int
+
+	for i < len(f) && j < len(s) {
+		if f[i] < s[j] {
+			final = append(final, f[i])
+			i++
+		} else {
+			final = append(final, s[j])
+			j++
+		}
+
+	}
+	fmt.Println("final: ", final)
+	for ; i < len(f); i++ {
+		final = append(final, f[i])
+	}
+	for ; j < len(s); j++ {
+		final = append(final, s[j])
+	}
+	return final
+}

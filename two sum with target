@@ -1,0 +1,30 @@
+package main
+
+import "fmt"
+
+func main() {
+	ia := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+	target := 15
+
+	a := twoSum(ia, target)
+	fmt.Println(a)
+
+}
+
+//two sum array
+
+func twoSum(ia []int, target int) []int {
+	var inArr []int
+	for i, j := 0, len(ia)-1; i < j; {
+		if ia[i]+ia[j] > target {
+			j--
+		} else if ia[i]+ia[j] < target {
+			i++
+		} else {
+			inArr = append(inArr, i)
+			inArr = append(inArr, j)
+			return inArr
+		}
+	}
+	return inArr
+}
